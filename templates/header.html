@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <title>Gestión de empleados</title>
+    <script src="https://kit.fontawesome.com/fb682e27c2.js" crossorigin="anonymous"></script> <!--Para Iconos de redes-->
+    <title>Gestión de maestros</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Gestión de empleados</a>
+        <a class="navbar-brand" href="#">Gestión de maestros</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="my-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('index') }}">Empleados <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url_for('index') }}">Maestros <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Item 2</a>

@@ -1,7 +1,7 @@
 {% include 'header.html' %}
 <br>
 <a href="{{ url_for('create') }}" class="btn btn-success">
-    Ingresar nuevo empleado
+    Ingresar nuevo maestro
 </a>
 <br>
 <br>
@@ -26,7 +26,7 @@
             <td>{{ empleado[2] }}</td> <!-- Correo -->
             <td>
                 <a class="btn btn-warning" href="/edit/{{ empleado[0] }}">Editar</a> 
-                <a class="btn btn-danger" onclick="return confirm('¿Desea borrar al empleado?')" href="/destroy/{{ empleado[0] }}">Eliminar</a>
+                <a class="btn btn-danger" onclick="return confirm('¿Desea borrar al maestro?')" href="/destroy/{{ empleado[0] }}">Eliminar</a>
             </td> <!-- Acciones -->
         </tr>
         {% endfor %}
