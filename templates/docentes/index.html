@@ -18,20 +18,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for empleado in empleados %}
+            {% for docente in docentes %}
             <tr>
-                <td>{{ empleado[0] }}</td> <!-- Id -->
+                <td>{{ docente[0] }}</td> <!-- Id -->
                 <td>
-                    <img class="thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[6]) }}" alt="Foto del maestro">
+                    <img class="thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=docente[6]) }}" alt="Foto del maestro">
                 </td> <!-- Foto -->
-                <td>{{ empleado[1] }}</td> <!-- Nombre -->
-                <td>{{ empleado[2] }}</td> <!-- Apellido -->
-                <td>{{ empleado[3] }}</td> <!-- DNI -->
-                <td>{{ empleado[4] }}</td> <!-- Correo -->
-                <td>{{ empleado[5] }}</td> <!-- Materia -->
+                <td>{{ docente[1] }}</td> <!-- Nombre -->
+                <td>{{ docente[2] }}</td> <!-- Apellido -->
+                <td>{{ docente[3] }}</td> <!-- DNI -->
+                <td>{{ docente[4] }}</td> <!-- Correo -->
+                <td>{{ docente[5] }}</td> <!-- Materia -->
                 <td>
-                    <a class="btn btn-warning btn-sm" href="/edit/{{ empleado[0] }}">Editar</a> 
-                    <a class="btn btn-danger btn-sm" onclick="return confirm('¿Desea borrar al maestro?')" href="/destroy/{{ empleado[0] }}">Eliminar</a>
+                    <a class="btn btn-warning btn-sm" href="/edit/{{ docente[0] }}">Editar</a> 
+                    <a class="btn btn-danger btn-sm" onclick="return confirm('¿Desea borrar al maestro?')" href="/destroy/{{ docente[0] }}">Eliminar</a>
                 </td> <!-- Acciones -->
             </tr>
             {% endfor %}

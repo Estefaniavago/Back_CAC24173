@@ -12,7 +12,7 @@ mysql = MySQL()
 # app.config['MYSQL_DATABASE_HOST']='http://127.0.0.1/' #Creamos la refencia al localhost
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'  # Creamos la refencia al localhost
 app.config['MYSQL_DATABASE_USER'] = 'root'  # El user que viene por defecto
-app.config['MYSQL_DATABASE_PASSWORD'] = 'root'  # Se puede omitir si no hay contraseña definida
+app.config['MYSQL_DATABASE_PASSWORD'] = '123456'  # Se puede omitir si no hay contraseña definida
 app.config['MYSQL_DATABASE_DB'] = 'sistemadocentes'  # nombre de la DB
 mysql.init_app(app)  # Creamos la conexion con la DB
 
