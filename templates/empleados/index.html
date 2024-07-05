@@ -1,35 +1,41 @@
 {% include 'header.html' %}
-<br>
-<a href="{{ url_for('create') }}" class="btn btn-success">
-    Ingresar nuevo maestro
-</a>
-<br>
-<br>
-<table class="table table-light">
-    <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th>Foto</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for empleado in empleados %}
-        <tr>
-            <td>{{ empleado[0] }}</td> <!-- Id -->
-            <td>
-                <img class="thumbnail" width="100" src="uploads/{{ empleado[3] }}" alt="">
-            </td> <!-- Foto -->
-            <td>{{ empleado[1] }}</td> <!-- Nombre -->
-            <td>{{ empleado[2] }}</td> <!-- Correo -->
-            <td>
-                <a class="btn btn-warning" href="/edit/{{ empleado[0] }}">Editar</a> 
-                <a class="btn btn-danger" onclick="return confirm('¿Desea borrar al maestro?')" href="/destroy/{{ empleado[0] }}">Eliminar</a>
-            </td> <!-- Acciones -->
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de Maestros</h2>
+        <a href="{{ url_for('create') }}" class="btn btn-success">Ingresar nuevo maestro</a>
+    </div>
+    <table class="table table-light table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Correo</th>
+                <th>Materia</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td>{{ empleado[0] }}</td> <!-- Id -->
+                <td>
+                    <img class="thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[6]) }}" alt="Foto del maestro">
+                </td> <!-- Foto -->
+                <td>{{ empleado[1] }}</td> <!-- Nombre -->
+                <td>{{ empleado[2] }}</td> <!-- Apellido -->
+                <td>{{ empleado[3] }}</td> <!-- DNI -->
+                <td>{{ empleado[4] }}</td> <!-- Correo -->
+                <td>{{ empleado[5] }}</td> <!-- Materia -->
+                <td>
+                    <a class="btn btn-warning btn-sm" href="/edit/{{ empleado[0] }}">Editar</a> 
+                    <a class="btn btn-danger btn-sm" onclick="return confirm('¿Desea borrar al maestro?')" href="/destroy/{{ empleado[0] }}">Eliminar</a>
+                </td> <!-- Acciones -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% include 'footer.html' %}
