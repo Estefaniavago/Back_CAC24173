@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS sistemadocentes;
+CREATE DATABASE sistemadocentes;
+
+USE sistemadocentes;
+ CREATE TABLE docentes(
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ nombre VARCHAR(255) NOT NULL,
+ apellido VARCHAR(255) NOT NULL,
+ dni INT NOT NULL,
+ correo VARCHAR(255) NOT NULL,
+ materia VARCHAR(255),
+ foto VARCHAR(255));
+ 
+ INSERT INTO sistemadocentes.docentes(id,nombre, apellido, dni,correo,materia, foto)
+ VALUES (NULL, 'Ana Maria','Lopez',20555555, 'ana.maria@gmail.com','Matematica','anamaria.jpg');
