@@ -60,14 +60,13 @@ def destroy(id):
 
 @app.route('/edit/<int:id>')
 def edit(id):
-    # sql = "SELECT * FROM `sistemaempleados`.`empleados` WHERE id=%s;"
     conn = mysql.connect()  # Se conecta a la conexion de mysql.init_app(app)
-    cursor = conn.cursor()  # almacenamos lo que ejecutamos
+    cursor = conn.cursor()  # Almacenamos lo que ejecutamos
     cursor.execute("SELECT * FROM `sistemadocentes`.`docentes` WHERE id=%s;", (id,))  # Ejecutamos la sentencia SQL
-    docentes = cursor.fetchall()
+    docente = cursor.fetchone()
     conn.commit()  # Cerramos la conexion
-    print(docentes)
-    return render_template('docentes/edit.html', docentes=docentes)
+    print(docente)
+    return render_template('docentes/edit.html', docente=docente)
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -110,7 +109,10 @@ def create():
 @app.route('/store', methods=['POST'])
 def storage():
     _nombre = request.form['txtNombre']
+    _apellido = request.form['txtApellido']
+    _dni = request.form['txtDni']
     _correo = request.form['txtCorreo']
+    _materia = request.form['txtMateria']
     _foto = request.files['txtFoto']
     
     now = datetime.now()
@@ -123,8 +125,8 @@ def storage():
         nuevoNombreFoto = tiempo + '_' + secure_filename(_foto.filename)
         _foto.save(os.path.join(app.config['CARPETA'], nuevoNombreFoto))
     
-    sql = "INSERT INTO `sistemadocentes`.`docentes` (`id`, `nombre`, `correo`, `foto`) VALUES (NULL, %s, %s, %s);"
-    datos = (_nombre, _correo, nuevoNombreFoto)
+    sql = "INSERT INTO `sistemadocentes`.`docentes` (`id`, `nombre`, `apellido`, `dni`, `correo`, `materia`, `foto`) VALUES (NULL, %s, %s, %s, %s, %s, %s);"
+    datos = (_nombre, _apellido, _dni, _correo, _materia, nuevoNombreFoto)
     
     conn = mysql.connect()
     cursor = conn.cursor()

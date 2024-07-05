@@ -9,30 +9,30 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Datos del maestro</h5>
-                <input type="hidden" value="{{ empleado[0] }}" name="txtID" id="txtID">
+                <input type="hidden" value="{{ docente[0] }}" name="txtID" id="txtID">
                 <div class="form-group">
                     <label for="txtNombre">Nombre:</label>
-                    <input id="txtNombre" value="{{ empleado[1] }}" class="form-control" type="text" name="txtNombre">
+                    <input id="txtNombre" value="{{ docente[1] }}" class="form-control" type="text" name="txtNombre">
                 </div>
                 <div class="form-group">
                     <label for="txtApellido">Apellido:</label>
-                    <input id="txtApellido" value="{{ empleado[2] }}" class="form-control" type="text" name="txtApellido">
+                    <input id="txtApellido" value="{{ docente[2] }}" class="form-control" type="text" name="txtApellido">
                 </div>
                 <div class="form-group">
                     <label for="txtDni">DNI:</label>
-                    <input id="txtDni" value="{{ empleado[3] }}" class="form-control" type="text" name="txtDni">
+                    <input id="txtDni" value="{{ docente[3] }}" class="form-control" type="text" name="txtDni">
                 </div>
                 <div class="form-group">
                     <label for="txtCorreo">Correo:</label>
-                    <input id="txtCorreo" value="{{ empleado[4] }}" class="form-control" type="email" name="txtCorreo">
+                    <input id="txtCorreo" value="{{ docente[4] }}" class="form-control" type="email" name="txtCorreo">
                 </div>
                 <div class="form-group">
                     <label for="txtMateria">Materia:</label>
-                    <input id="txtMateria" value="{{ empleado[5] }}" class="form-control" type="text" name="txtMateria">
+                    <input id="txtMateria" value="{{ docente[5] }}" class="form-control" type="text" name="txtMateria">
                 </div>
                 <div class="form-group">
                     <label for="txtFoto">Foto:</label>
-                    <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[6]) }}" alt="Foto del maestro">
+                    <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=docente[6]) }}" alt="Foto del maestro">
                     <input id="txtFoto" class="form-control-file" type="file" name="txtFoto">
                 </div>
                 <div class="form-group">
