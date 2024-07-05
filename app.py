@@ -12,8 +12,8 @@ mysql = MySQL()
 # app.config['MYSQL_DATABASE_HOST']='http://127.0.0.1/' #Creamos la refencia al localhost
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'  # Creamos la refencia al localhost
 app.config['MYSQL_DATABASE_USER'] = 'root'  # El user que viene por defecto
-app.config['MYSQL_DATABASE_PASSWORD'] = '123456'  # Se puede omitir si no hay contraseña definida
-app.config['MYSQL_DATABASE_DB'] = 'sistemaempleados'  # nombre de la DB
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'  # Se puede omitir si no hay contraseña definida
+app.config['MYSQL_DATABASE_DB'] = 'sistemadocentes'  # nombre de la DB
 mysql.init_app(app)  # Creamos la conexion con la DB
 
 CARPETA = os.path.join('uploads')  # Referencia a la carpeta
@@ -25,24 +25,24 @@ def uploads(nombreFoto):
 
 @app.route('/')  # Hacemos el ruteo para que el user entre en la raiz
 def index():
-    sql = "SELECT * FROM `sistemaempleados`.`empleados`;"
+    sql = "SELECT * FROM `sistemadocentes`.`docentes`;"
     conn = mysql.connect()  # Se conecta a la conexión mysql.init_app(app)
     cursor = conn.cursor()  # Almacenaremos lo que ejecutamos
     cursor.execute(sql)  # Ejecutamos la sentencia SQL
 
-    empleados = cursor.fetchall()  # Traemos toda la información
-    print(empleados)  # Imprimimos los datos en la terminal
+    docentes = cursor.fetchall()  # Traemos toda la información
+    print(docentes)  # Imprimimos los datos en la terminal
 
     conn.commit()  # Cerramos la conexión
 
-    return render_template('empleados/index.html', empleados=empleados)  # Identifica la carpeta y el archivo html
+    return render_template('docentes/index.html', docentes=docentes)  # Identifica la carpeta y el archivo html
 
 @app.route('/destroy/<int:id>')
 def destroy(id):
     conn = mysql.connect()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT foto FROM `sistemaempleados`.`empleados` WHERE id=%s", id)
+    cursor.execute("SELECT foto FROM `sistemadocentes`.`docentes` WHERE id=%s", id)
     fila = cursor.fetchone()
 
     if fila:
@@ -53,7 +53,7 @@ def destroy(id):
             except FileNotFoundError:
                 pass  # Opcionalmente puedes manejar el caso de archivo no encontrado aquí
 
-        cursor.execute("DELETE FROM `sistemaempleados`.`empleados` WHERE id=%s", (id,))
+        cursor.execute("DELETE FROM `sistemadocentes`.`docentes` WHERE id=%s", (id,))
         conn.commit()
 
     return redirect('/')
@@ -63,11 +63,11 @@ def edit(id):
     # sql = "SELECT * FROM `sistemaempleados`.`empleados` WHERE id=%s;"
     conn = mysql.connect()  # Se conecta a la conexion de mysql.init_app(app)
     cursor = conn.cursor()  # almacenamos lo que ejecutamos
-    cursor.execute("SELECT * FROM `sistemaempleados`.`empleados` WHERE id=%s;", (id,))  # Ejecutamos la sentencia SQL
-    empleados = cursor.fetchall()
+    cursor.execute("SELECT * FROM `sistemadocentes`.`docentes` WHERE id=%s;", (id,))  # Ejecutamos la sentencia SQL
+    docentes = cursor.fetchall()
     conn.commit()  # Cerramos la conexion
-    print(empleados)
-    return render_template('empleados/edit.html', empleados=empleados)
+    print(docentes)
+    return render_template('docentes/edit.html', docentes=docentes)
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -76,7 +76,7 @@ def update():
     _foto = request.files['txtFoto']
     id = request.form['txtID']
     print(_nombre)
-    sql = "UPDATE `sistemaempleados`.`empleados` SET `nombre`=%s, `correo`=%s WHERE id=%s;"
+    sql = "UPDATE `sistemadocentes`.`docentes` SET `nombre`=%s, `correo`=%s WHERE id=%s;"
     datos = (_nombre, _correo, id)
 
     conn = mysql.connect()  # Se conecta a la conexión mysql.init_app(app)
@@ -89,11 +89,11 @@ def update():
         nuevoNombreFoto = tiempo + _foto.filename  # Concatena el nombre
         _foto.save("uploads/" + nuevoNombreFoto)  # Lo guarda en la carpeta
 
-        cursor.execute("SELECT foto FROM `sistemaempleados`.`empleados` WHERE id=%s", id)  # Buscamos la foto
+        cursor.execute("SELECT foto FROM `sistemadocentes`.`docentes` WHERE id=%s", id)  # Buscamos la foto
         fila = cursor.fetchall()  # Traemos toda la información
 
         os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))  # Ese valor seleccionado se encuentra en la posición 0 y la fila 0
-        cursor.execute("UPDATE `sistemaempleados`.`empleados` SET foto=%s WHERE id=%s", (nuevoNombreFoto, id))  # Buscamos la foto
+        cursor.execute("UPDATE `sistemadocentes`.`docentes` SET foto=%s WHERE id=%s", (nuevoNombreFoto, id))  # Buscamos la foto
 
     cursor.execute(sql, datos)
     conn.commit()  # Cerramos la conexión
@@ -120,7 +120,7 @@ def storage():
         nuevoNombreFoto = tiempo + '_' + secure_filename(_foto.filename)
         _foto.save(os.path.join(app.config['CARPETA'], nuevoNombreFoto))
     
-    sql = "INSERT INTO `sistemaempleados`.`empleados` (`id`, `nombre`, `correo`, `foto`) VALUES (NULL, %s, %s, %s);"
+    sql = "INSERT INTO `sistemadocentes`.`docentes` (`id`, `nombre`, `correo`, `foto`) VALUES (NULL, %s, %s, %s);"
     datos = (_nombre, _correo, nuevoNombreFoto)
     
     conn = mysql.connect()
