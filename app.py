@@ -72,12 +72,15 @@ def edit(id):
 @app.route('/update', methods=['POST'])
 def update():
     _nombre = request.form['txtNombre']
+    _apellido = request.form['txtApellido']
+    _dni = request.form['txtDni']
     _correo = request.form['txtCorreo']
+    _materia= request.form['txtMateria']
     _foto = request.files['txtFoto']
     id = request.form['txtID']
     print(_nombre)
-    sql = "UPDATE `sistemadocentes`.`docentes` SET `nombre`=%s, `correo`=%s WHERE id=%s;"
-    datos = (_nombre, _correo, id)
+    sql = "UPDATE `sistemadocentes`.`docentes` SET `nombre`=%s, `apellido`=%s,`dni`=%s,`correo`=%s, `materia`=%s WHERE id=%s;"
+    datos = (_nombre,_apellido,_dni, _correo, _materia, id)
 
     conn = mysql.connect()  # Se conecta a la conexión mysql.init_app(app)
     cursor = conn.cursor()  # Almacenaremos lo que ejecutamos
@@ -102,7 +105,7 @@ def update():
 
 @app.route('/create')
 def create():
-    return render_template('empleados/create.html')
+    return render_template('docentes/create.html')
 
 @app.route('/store', methods=['POST'])
 def storage():
