@@ -30,7 +30,10 @@
                 </div>
                 <div class="form-group">
                     <label for="txtDni">DNI:</label>
-                    <input id="txtDni" class="form-control" type="text" name="txtDni" required>
+                    <input id="txtDni" class="form-control" type="text" name="txtDni" pattern="\d{8}" maxlength="8" required>
+                    <div class="invalid-feedback">
+                        El DNI debe tener exactamente 8 dígitos.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="txtCorreo">Correo:</label>
